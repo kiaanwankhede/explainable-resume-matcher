@@ -1,0 +1,13 @@
+[
+  {
+    "jd_id": "java-developer",
+    "title": "Java Developer",
+    "target_category": "Java Developer",
+    "raw_text": "We are looking for a Java Developer with strong backend experience, comfort with modern CI/CD practices, and ideally some cloud exposure.",
+    "requirements": [
+      {"requirement_text": "3+ years of experience with Java", "requirement_category": "must_have"},
+      {"requirement_text": "Familiarity with CI/CD pipelines", "requirement_category": "must_have"},
+      {"requirement_text": "Exposure to cloud platforms, AWS preferred", "requirement_category": "nice_to_have"}
+    ]
+  }
+]

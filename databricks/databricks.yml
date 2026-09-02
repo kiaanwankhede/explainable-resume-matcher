@@ -1,0 +1,24 @@
+# Databricks Asset Bundle root config.
+# TODO(claude code): verify this against the current Databricks Asset Bundle schema
+# before deploying — bundle syntax evolves and this is a structural skeleton reflecting
+# SPEC.md, not a verified-working config. Free Edition is serverless-only: confirm whether
+# job tasks need an explicit `environment_key` / serverless environment spec rather than
+# a cluster reference.
+
+bundle:
+  name: explainable-resume-matcher
+
+variables:
+  catalog:
+    description: Unity Catalog catalog name for this project
+    default: resume_matcher
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://<your-free-edition-workspace-url>   # TODO: fill in

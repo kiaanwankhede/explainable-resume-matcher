@@ -1,0 +1,48 @@
+# TODO(claude code): verify task syntax against current Databricks Asset Bundle docs,
+# especially serverless environment config for Free Edition (no cluster spec needed,
+# but confirm whether an environment_key is required for spark_python_task on serverless).
+# This reflects the DAG in SPEC.md §9 structurally — treat as a skeleton, not final.
+
+resources:
+  jobs:
+    resume_matcher_pipeline:
+      name: resume-matcher-pipeline
+      tasks:
+        - task_key: ingest
+          spark_python_task:
+            python_file: ../src/ingest.py
+            parameters: ["--config", "../config.yml"]
+
+        - task_key: chunk_embed
+          depends_on:
+            - task_key: ingest
+          spark_python_task:
+            python_file: ../src/chunk_embed.py
+            parameters: ["--config", "../config.yml"]
+
+        - task_key: build_index
+          depends_on:
+            - task_key: chunk_embed
+          spark_python_task:
+            python_file: ../src/build_index.py
+            parameters: ["--config", "../config.yml"]
+
+        - task_key: extract_requirements
+          spark_python_task:
+            python_file: ../src/extract_requirements.py
+            parameters: ["--config", "../config.yml"]
+
+        - task_key: score
+          depends_on:
+            - task_key: build_index
+            - task_key: extract_requirements
+          spark_python_task:
+            python_file: ../src/score.py
+            parameters: ["--config", "../config.yml"]
+
+        - task_key: eval
+          depends_on:
+            - task_key: score
+          spark_python_task:
+            python_file: ../src/eval.py
+            parameters: ["--config", "../config.yml"]

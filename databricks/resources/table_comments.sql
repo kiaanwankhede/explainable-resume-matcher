@@ -1,0 +1,11 @@
+-- Optional, SPEC.md §10 — metadata that feeds the Genie Agent.
+-- TODO(claude code): fill in COMMENT ON statements for gold.jds, gold.jd_requirements,
+-- gold.match_results, gold.candidate_scores once those tables exist (after score.py runs
+-- successfully at least once). Genie reads these comments to understand the schema —
+-- write them for a non-technical reader (a recruiter), not a fellow engineer.
+--
+-- Example shape:
+-- COMMENT ON TABLE resume_matcher.gold.candidate_scores IS
+--   'Final ranked match score per candidate per job description.';
+-- COMMENT ON COLUMN resume_matcher.gold.candidate_scores.total_score IS
+--   'Weighted sum of evidence scores across all matched requirements. Higher is a stronger match.';
