@@ -21,4 +21,4 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://<your-free-edition-workspace-url>   # TODO: fill in
+      host: https://dbc-a77cb721-aa25.cloud.databricks.com
